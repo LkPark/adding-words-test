@@ -1,0 +1,19 @@
+version: "2"
+
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - "80"
+    expose:
+      - "80"
+    volumes:
+      - ./:/var/www/html/:rw
+    environment:
+      - VIRTUAL_HOST=words.dev
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
