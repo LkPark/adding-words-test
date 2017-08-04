@@ -1,7 +1,7 @@
-FROM php:7.0-apache
+FROM php:7.0-cli
 
-ADD 000-default.conf /etc/apache2/sites-enabled/000-default.conf
+COPY . /usr/src/app
 
-COPY ./ /var/www/html/
+WORKDIR /usr/src/app
 
-RUN a2enmod rewrite
+CMD ["php", "./vendor/bin/phpunit", "-c", "./phpunit.xml"]
